@@ -10,14 +10,12 @@ console.log("test");
 
 export default function Home() {
   return (
-    <main className=" bg-black">
-      <div className="flex justify-center mt-10 gap-4">
-        <h1 className="text-xl text-white">Home</h1>
-        <Tbutton text="Search" icon={<FaSearch />} />
-        <Tbutton text="Games" icon={<MdGames />} />
-        <Tbutton text="Play" icon={<IoGameController />} />
-        <Tbutton text="Favorite" icon={<FaHeart />} />
-      </div>
-    </main>
+    <div className="flex justify-center mt-10 gap-4">
+      <h1 className="text-xl text-white">Home</h1>
+      <Tbutton text="Search" variant="primary" icon={<FaSearch />} />
+      <Tbutton text="Games" variant="secondary" icon={<MdGames />} />
+      <Tbutton text="Play" variant="warning" icon={<IoGameController />} />
+      <Tbutton text="Favorite" variant="danger" icon={<FaHeart />} />
+    </div>
   );
 }

@@ -8,10 +8,10 @@ export default function DashboardLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="m-0 p-0 min-h-screen flex flex-col">
         <Header />
 
-        <main>{children}</main>
+        <main className="flex-1 min-h-0">{children}</main>
       </body>
     </html>
   );
