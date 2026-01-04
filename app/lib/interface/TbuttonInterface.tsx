@@ -4,5 +4,6 @@ export interface TbuttonInterface {
   text: string;
   icon?: React.ReactNode;
   disabled?: boolean;
-  variant: "primary" | "warning" | "secondary" | "danger";
+  variant?: "primary" | "warning" | "secondary" | "danger";
+  onClick?: () => void;
 }
