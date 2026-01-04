@@ -5,6 +5,7 @@ export default function Tbutton({
   icon,
   disabled,
   variant,
+  onClick,
 }: TbuttonInterface) {
   const getVariantClasses = (variant: string) => {
     switch (variant) {
@@ -21,10 +22,12 @@ export default function Tbutton({
 
   return (
     <button
+      onClick={onClick}
+      disabled={disabled}
       className={`
         px-4 py-2 rounded-md font-medium 
         flex items-center gap-2 justify-center
-        ${getVariantClasses(variant)}
+        ${getVariantClasses(variant || "primary")}
         ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
       `}
     >
