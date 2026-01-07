@@ -5,7 +5,11 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { searchGames } from "@/app/lib/gamesApi";
 
-export default function SearchBar() {
+interface SearchBarProps {
+  onSearchResults?: (results: any[]) => void;
+}
+
+export default function SearchBar({ onSearchResults }: SearchBarProps) {
   const [searchText, setSearchText] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,8 +24,16 @@ export default function SearchBar() {
         console.log("Games API Result:", result);
         if (result.results && result.results.length > 0) {
           console.log("First game info:", result.results[0]);
+
+          if (onSearchResults) {
+            onSearchResults(result.results);
+          }
         } else {
           console.log("No games found");
+
+          if (onSearchResults) {
+            onSearchResults([]);
+          }
         }
       })
       .catch((err) => {
