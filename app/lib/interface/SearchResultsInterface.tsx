@@ -1,3 +1,17 @@
-export interface SearchResults {
-  games: any;
+interface Game {
+  id: number;
+  name: string;
+  background_image?: string;
+  released?: string;
+  rating?: number;
+  metacritic?: number;
+  platforms?: Array<{
+    platform: {
+      name: string;
+    };
+  }>;
+}
+
+export interface SearchResultsInterface {
+  games: Game[];
 }
