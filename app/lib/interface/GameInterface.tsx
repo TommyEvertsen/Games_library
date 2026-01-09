@@ -12,6 +12,8 @@ interface Game {
   }>;
 }
 
-export interface SearchResultsInterface {
+export interface GameInterface {
   games: Game[];
 }
+
+export type { Game };
