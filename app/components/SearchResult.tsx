@@ -1,6 +1,15 @@
-import { SearchResultsInterface } from "../lib/interface/SearchResultsInterface";
+"use client";
 
-const SearchResults = ({ games }: SearchResultsInterface) => {
+import { useRouter } from "next/navigation";
+import { GameInterface } from "../lib/interface/GameInterface";
+
+const SearchResults = ({ games }: GameInterface) => {
+  const router = useRouter();
+
+  const goToGame = (id: number) => {
+    router.push(`/game-info/${id}`);
+  };
+
   return (
     <>
       <div className="searchResultsWrapper">
@@ -14,7 +23,8 @@ const SearchResults = ({ games }: SearchResultsInterface) => {
                 {games.map((game, index) => (
                   <li
                     key={game.id || index}
-                    className="border p-4 rounded-md w-full bg-gray-50 flex gap-4 hover:bg-amber-300"
+                    className="border p-4 rounded-md w-full bg-gray-50 flex gap-4 hover:bg-amber-300 cursor-pointer"
+                    onClick={() => goToGame(game.id)}
                   >
                     <div className="shrink-0">
                       <img
@@ -30,17 +40,6 @@ const SearchResults = ({ games }: SearchResultsInterface) => {
                       <h3 className="font-semibold text-lg">{game.name}</h3>
 
                       <p className="text-gray-600">Released: {game.released}</p>
-
-                      {/* <p className="text-gray-600">
-                      Metacritic score: {game.metacritic || "NA"}
-                    </p> */}
-
-                      {/*  <p className="text-gray-600">
-                      Platforms:{" "}
-                      {game.platforms
-                        .map((p: any) => p.platform.name)
-                        .join(", ")}
-                    </p> */}
                     </div>
                   </li>
                 ))}
