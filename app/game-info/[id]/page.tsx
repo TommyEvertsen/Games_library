@@ -17,24 +17,48 @@ const GameInfoPage = () => {
     });
   }, [gameId]);
 
-  const { name, background_image } = gameData || {};
+  const {
+    id,
+    name,
+    background_image,
+    description_raw,
+    released,
+    metacritic,
+    developers,
+  } = gameData || {};
 
   return (
     <>
       <div className="gameInfoPage mx-10 my-10">
         {gameData ? (
           <>
-            <div>
-              <h1>{name}</h1>
-            </div>
-            <div className="shrink-0">
-              <img
-                src={background_image}
-                alt={name}
-                width={120}
-                height={80}
-                className="rounded-md object-cover"
-              />
+            <div className="gameInfoWrapper grid grid-cols-2 grid-rows-2 gap-6 text-lg">
+              <div className="MainInfo ">
+                <h1 className="text-2xl mb-4">{name}</h1>
+                <p>Released: {released}</p>
+                <p>Metacritic score: {metacritic || "N/A"}</p>
+                <p>
+                  Developed by:{" "}
+                  {developers?.map((developer, index) => (
+                    <span key={index}>
+                      {developer.name || "Unknown Developer"}
+                      {index < developers.length - 1 && ", "}
+                    </span>
+                  ))}
+                </p>
+
+                <div className="description ">
+                  <h2 className="text-lg mt-4">Description:</h2>
+                  <p className="text-md">{description_raw}</p>
+                </div>
+              </div>
+              <div className="gameImageDiv row-span-2 flex justify-center items-baseline ">
+                <img
+                  src={background_image}
+                  alt={name}
+                  className="rounded-lg object-cover"
+                />
+              </div>
             </div>
           </>
         ) : (
