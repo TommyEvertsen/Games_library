@@ -4,7 +4,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_RAWG_BASE_URL;
 export const getGames = async (page = 1, pageSize = 20) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/games?key=${API_KEY}&page=${page}&page_size=${pageSize}`
+      `${BASE_URL}/games?key=${API_KEY}&page=${page}&page_size=${pageSize}`,
     );
 
     if (!response.ok) {
@@ -18,12 +18,12 @@ export const getGames = async (page = 1, pageSize = 20) => {
   }
 };
 
-export const searchGames = async (query, page = 1, pageSize = 20) => {
+export const searchGames = async (query, page = 1, pageSize = 10) => {
   try {
     const response = await fetch(
       `${BASE_URL}/games?key=${API_KEY}&search=${encodeURIComponent(
-        query
-      )}&page=${page}&page_size=${pageSize}`
+        query,
+      )}&page=${page}&page_size=${pageSize}`,
     );
 
     if (!response.ok) {

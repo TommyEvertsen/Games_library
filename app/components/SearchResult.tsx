@@ -44,6 +44,19 @@ const SearchResults = ({ games }: GameInterface) => {
                   </li>
                 ))}
               </ul>
+              <div className="rawg-attribution mt-4 text-sm text-gray-600 text-center">
+                <p>
+                  Results by{" "}
+                  <a
+                    href="https://rawg.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-700 underline"
+                  >
+                    RAWG
+                  </a>
+                </p>
+              </div>
             </>
           ) : (
             <p className="text-gray-500">Try searching for something</p>

@@ -6,6 +6,15 @@ interface Game {
   rating?: number;
   description_raw?: string;
   metacritic?: number;
+  metacritic_platforms?: Array<{
+    metascore: number;
+    platform: {
+      name: string;
+      platform: number;
+      slug: string;
+    };
+    url: string;
+  }>;
   developers?: Array<{
     id: number;
     name: string;
