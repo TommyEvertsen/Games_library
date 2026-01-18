@@ -1,6 +1,6 @@
 "use client";
 
-import Tbutton from "@/app/components/Button";
+import Tbutton from "./Tbutton";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { searchGames } from "@/app/lib/gamesApi";
@@ -44,7 +44,7 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
   return (
     <>
       <div className="searchBarWrapper">
-        <div className="searchBar flex justify-baseline gap-2">
+        <div className="searchBar flex  gap-2">
           <input
             type="text"
             placeholder="Enter name of the game"

@@ -1,9 +1,9 @@
 import React from "react";
 
 export interface TbuttonInterface {
-  text: string;
+  text?: string;
   icon?: React.ReactNode;
   disabled?: boolean;
-  variant?: "primary" | "warning" | "secondary" | "danger";
+  variant?: "primary" | "warning" | "secondary" | "danger" | "close";
   onClick?: () => void;
 }
