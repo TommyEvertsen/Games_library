@@ -3,12 +3,12 @@ import { CardInterface } from "@/app/lib/interface/CardInterface";
 export default function Card({ title, icon, text }: CardInterface) {
   return (
     <>
-      <div className="cardWrapper">
-        <div className="card border-2 border-b-gray-900 w-360 h-36">
-          <div className="cardTop flex justify-baseline bg-purple-300 pl-1">
+      <div className="cardWrapper ">
+        <div className="card rounded-lg border overflow-hidden">
+          <div className="cardTop py-1 px-1 text-lg  bg-amber-300 ">
             {title}
           </div>
-          <div className="cardContent pl-1 bg-yellow-50">{text}</div>
+          <div className="cardContent py-1 px-1 text-base">{text}</div>
         </div>
       </div>
     </>

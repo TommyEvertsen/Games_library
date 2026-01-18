@@ -23,7 +23,7 @@ export default function Header() {
   ];
 
   return (
-    <div className="bg-indigo-500 shadow-lg shadow-indigo-500/50 min-h-16 flex px-4 items-center relative">
+    <div className="bg-gray-800 text-white min-h-16 flex px-4 items-center relative">
       <div className="flex items-center gap-2">
         <span className="text-2xl">🎮</span>
         <h1 className="text-white text-lg cursor-pointer" onClick={goToHome}>
@@ -34,7 +34,7 @@ export default function Header() {
         {links.map((link, index) => (
           <p
             key={index}
-            className="text-white cursor-pointer hover:text-amber-400 transition-colors"
+            className="text-white cursor-pointer  hover:text-blue-300 transition-colors"
             onClick={link.onclick}
           >
             {link.title}
