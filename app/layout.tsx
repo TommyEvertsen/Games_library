@@ -12,7 +12,6 @@ export default function DashboardLayout({
     <html lang="en">
       <body className="m-0 p-0 min-h-screen flex flex-col">
         <Header />
-        <SideBar />
 
         <main className="relative">{children}</main>
 
