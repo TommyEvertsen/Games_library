@@ -88,6 +88,10 @@ const GameInfoPage = () => {
         ) : (
           <>
             <div className="loadingScreen flex justify-center mt-16 text-3xl">
+              <svg
+                className="mr-3 size-5 animate-spin ..."
+                viewBox="0 0 24 24"
+              ></svg>
               <h1>Loading game information...</h1>
             </div>
           </>

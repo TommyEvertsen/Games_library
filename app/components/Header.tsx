@@ -18,8 +18,8 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-gray-800 text-white min-h-16 flex px-4 items-center relative">
-        <div className="flex items-center gap-2">
+      <div className="bg-gray-800 text-white min-h-12 flex px-4 items-center sticky top-0">
+        <div className="flex items-center gap-2 ">
           <span
             className="text-xl mr-3 hover:text-blue-300 cursor-pointer"
             onClick={toggleSidebar}
