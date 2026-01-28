@@ -31,10 +31,10 @@ const GameInfoPage = () => {
 
   return (
     <>
-      <div className="gameInfoPage mx-10 my-10 h-full">
+      <div className="gameInfoPage px-2 lg:ml-16 lg:mr-4 my-10 h-full">
         {gameData ? (
           <>
-            <div className="gameInfoWrapper grid grid-cols-2 grid-rows-2 gap-8 text-lg">
+            <div className="gameInfoWrapper grid lg:grid-cols-2 grid-rows-2 gap-8 text-lg ">
               <div className="MainInfo border border-solid row-span-2">
                 <h1 className="text-2xl mb-2  ">{name}</h1>
                 <p>Released: {released}</p>

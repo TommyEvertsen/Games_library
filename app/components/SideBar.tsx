@@ -60,7 +60,7 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
         </div>
       )}
       {!isOpen && (
-        <div className="unopenedSideBarWrapper fixed top-12 left-0 bottom-0 w-12 z-50  bg-slate-800 opacity-95  ">
+        <div className="unopenedSideBarWrapper fixed top-12 left-0 bottom-0 w-12 z-50  bg-slate-800 opacity-95 invisible lg:visible ">
           <div className="unopenedSidebar w-full h-full ">
             <nav className="flex justify-center pt-2 text-xl text-white">
               <ul>

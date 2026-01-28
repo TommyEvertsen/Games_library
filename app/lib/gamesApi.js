@@ -18,13 +18,23 @@ export const getGames = async (page = 1, pageSize = 20) => {
   }
 };
 
-export const searchGames = async (query, page = 1, pageSize = 10) => {
+export const searchGames = async (
+  query,
+  page = 1,
+  pageSize = 10,
+  precise = true,
+) => {
   try {
-    const response = await fetch(
-      `${BASE_URL}/games?key=${API_KEY}&search=${encodeURIComponent(
-        query,
-      )}&page=${page}&page_size=${pageSize}`,
-    );
+    const searchParams = new URLSearchParams({
+      key: API_KEY,
+      search: query,
+      page: page,
+      page_size: pageSize,
+      search_precise: precise,
+      ordering: "-relevance",
+    });
+
+    const response = await fetch(`${BASE_URL}/games?${searchParams}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -50,4 +60,21 @@ export const getGameById = async (id) => {
   }
 };
 
-export { getGames, searchGames, getGameById };
+export const getMostPopularGames = async () => {
+  const today = new Date().toISOString().slice(0, 10);
+  try {
+    const response = await fetch(
+      `${BASE_URL}/games?dates=2023-01-01,${today}&ordering=-metacritic&metacritic=70,100&page_size=8&key=${API_KEY}`,
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { getGames, searchGames, getGameById, getMostPopularGames };

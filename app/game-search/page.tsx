@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-10 ">
         <SearchBar onSearchResults={handleSearchResults} />
       </div>
       <div className="flex justify-center mt-10">
