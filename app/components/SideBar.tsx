@@ -35,18 +35,18 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
   return (
     <>
       {isOpen && (
-        <div className="openedSideBarWrapper fixed top-12 left-0 bottom-0 w-42 z-50 transition ease-in duration-300">
-          <div className="openedSideBar w-full h-full bg-slate-800 opacity-95  ">
+        <div className="openedSideBarWrapper fixed top-12 left-0 bottom-0 w-42 z-50 ">
+          <div className="openedSideBar w-full h-full bg(--background)   ">
             <div className="">
               <nav>
-                <h2 className="text-gray-100 lg:text-lg flex justify-center py-2 border-b ">
+                <h2 className="text(--primaryText) lg:text-lg flex justify-center py-2  ">
                   Menu
                 </h2>
-                <ul className="text-white lg:text-lg py-1">
+                <ul className="text(--primaryText) lg:text-lg py-1">
                   {links.map((link, index) => (
                     <li
                       key={index}
-                      className="py-1 px-2 rounded cursor-pointer  hover:text-blue-400 flex items-center gap-2"
+                      className="py-1 px-2 rounded cursor-pointer  hover:text-(--hover)  flex items-center gap-2"
                       onClick={link.onclick}
                     >
                       <link.icon />
@@ -60,15 +60,15 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
         </div>
       )}
       {!isOpen && (
-        <div className="unopenedSideBarWrapper fixed top-12 left-0 bottom-0 w-12 z-50  bg-slate-800 opacity-95 invisible lg:visible ">
+        <div className="unopenedSideBarWrapper fixed top-12 left-0 bottom-0 w-12 z-50  bg(--background)  opacity-95 invisible lg:visible ">
           <div className="unopenedSidebar w-full h-full ">
-            <nav className="flex justify-center pt-2 text-xl text-white">
+            <nav className="flex justify-center pt-2 text-xl text(--primaryText)">
               <ul>
                 {links.map((link, index) => (
                   <li
                     key={index}
                     onClick={link.onclick}
-                    className="py-1.5 hover:text-blue-400  cursor-pointer"
+                    className="py-1.5 hover:text-(--hover)  cursor-pointer"
                   >
                     <link.icon />
                   </li>

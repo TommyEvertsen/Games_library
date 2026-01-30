@@ -18,7 +18,7 @@ export default function DashboardLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="relative flex-1">{children}</main>
+          <main className="relative">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
