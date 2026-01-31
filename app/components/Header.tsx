@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-(--background) text-(--primaryText) min-h-12 flex px-4 sticky top-0 z-50 ">
+      <div className="bg-(--background) text-(--primaryText) min-h-12 flex justify-between px-4 sticky top-0 z-50 ">
         <div className="flex items-center gap-2 ">
           <span
             className="text-xl mr-3 hover:text-(--hover) cursor-pointer"
@@ -40,6 +40,8 @@ export default function Header() {
           >
             Videogame library
           </h1>
+        </div>
+        <div className="rightSide flex items-center ">
           <div
             onClick={toggleDarkMode}
             className="cursor-pointer ml-4 p-2 rounded-full hover:bg-(--hoverBackground) transition-colors duration-200"

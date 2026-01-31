@@ -4,8 +4,9 @@
   --background: #ffffff;
   --foreground: #171717;
   --primaryText: #171717;
+  --secondaryText: #ffffff;
   --accent1: rgb(249, 74, 11);
-  --accent2: rgb(147, 0, 152);
+  --accent2: rgb(106, 6, 110);
   --hover: #42a5f5;
   --hoverBackground: #e0e0e0;
 }
@@ -14,6 +15,7 @@
   --background: #181818;
   --foreground: #ededed;
   --primaryText: #f7f7f7;
+  --secondaryText: #171717;
   --accent1: #ff5722;
   --accent2: #673ab7;
   --hover: #ffeb3b;
@@ -26,4 +28,10 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+.glass {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.6px);
+  border-radius: 0px 12px 0px 0px;
 }

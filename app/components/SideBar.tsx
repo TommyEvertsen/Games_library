@@ -35,8 +35,8 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
   return (
     <>
       {isOpen && (
-        <div className="openedSideBarWrapper fixed top-12 left-0 bottom-0 w-42 z-50 ">
-          <div className="openedSideBar w-full h-full bg(--background)   ">
+        <div className="openedSideBarWrapper fixed top-12 left-0 bottom-0 w-42 z-99 border-r border-t glass">
+          <div className="openedSideBar w-full h-full    ">
             <div className="">
               <nav>
                 <h2 className="text(--primaryText) lg:text-lg flex justify-center py-2  ">
