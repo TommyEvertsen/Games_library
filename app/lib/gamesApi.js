@@ -64,7 +64,7 @@ export const getMostPopularGames = async () => {
   const today = new Date().toISOString().slice(0, 10);
   try {
     const response = await fetch(
-      `${BASE_URL}/games?dates=2023-01-01,${today}&ordering=-metacritic&metacritic=70,100&page_size=8&key=${API_KEY}`,
+      `${BASE_URL}/games?dates=2023-01-01,${today}&ordering=-metacritic&metacritic=70,100&page_size=6&key=${API_KEY}`,
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
