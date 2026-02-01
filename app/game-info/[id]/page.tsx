@@ -25,9 +25,16 @@ const GameInfoPage = () => {
     description_raw,
     released,
     metacritic,
+    metacritic_url,
     metacritic_platforms,
     developers,
   } = gameData || {};
+
+  const goToMetacritic = (url: string | undefined) => {
+    if (url) {
+      window.open(url, "_blank");
+    }
+  };
 
   return (
     <>
@@ -35,33 +42,32 @@ const GameInfoPage = () => {
         {gameData ? (
           <>
             <div className="gameInfoWrapper grid lg:grid-cols-2 grid-rows-2 gap-8 text-lg ">
-              <div className="MainInfo border border-solid row-span-2">
-                <h1 className="text-2xl mb-2  ">{name}</h1>
-                <p>Released: {released}</p>
-                <p>
-                  Metacritic score: {metacritic || "N/A"}
-                  {!hidePlatforms
-                    ? metacritic_platforms?.map(
-                        (platformData: any, index: number) => (
-                          <span key={index} className="block ml-4">
-                            -{" "}
-                            {platformData.platform?.name || "Unknown Platform"}:{" "}
-                            {platformData.metascore}
-                          </span>
-                        ),
-                      ) || ""
-                    : ""}
-                </p>
-                <p>
-                  Developed by: {developers?.[0]?.name || "Unknown Developer"}
-                </p>
+              <div className="gameInfo  row-span-2 ">
+                <div className="mainInfo  px-2 rounded-xl flex gap-3">
+                  <div
+                    className="criticScore  bg-[var(--accent1)] text-[var(--accentText)] rounded-lg w-24 flex flex-col justify-center   items-center  hover:opacity-85 transition-opacity cursor-pointer"
+                    onClick={() => goToMetacritic(metacritic_url)}
+                  >
+                    <p className="text-2xl font-bold">{metacritic || "N/A"} </p>
+                    <p className="text-sm j">Metacritic</p>
+                  </div>
+                  <div>
+                    <h1 className="text-2xl mb-2  ">{name}</h1>
+                    <p>Released: {released}</p>
 
-                <div className="description mt-4 border border-dashed">
+                    <p>
+                      Developed by:{" "}
+                      {developers?.[0]?.name || "Unknown Developer"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="description mt-4 px-2">
                   <h2 className="text-lg ">Description:</h2>
                   <p className="text-base mt-1">{description_raw}</p>
                 </div>
 
-                <div className="rawg-attribution mt-4 text-sm text-gray-600">
+                <div className="rawg-attribution mt-4 text-sm text-gray-600 px-2">
                   <p>
                     Game information provided by{" "}
                     <a
@@ -76,11 +82,11 @@ const GameInfoPage = () => {
                 </div>
               </div>
 
-              <div className="gameImageDiv row-span-2 flex justify-center items-baseline  max-h-140 border border-solid">
+              <div className="gameImageDiv row-span-2 rounded-lg flex justify-center items-baseline  max-h-120 ">
                 <img
                   src={background_image}
                   alt={name}
-                  className="rounded-lg object-contain h-full w-full"
+                  className="rounded-lg h-full w-full"
                 />
               </div>
             </div>

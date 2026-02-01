@@ -17,7 +17,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getMostPopularGames().then((result) => {
+    const today = new Date().toISOString().slice(0, 10);
+
+    getMostPopularGames(today).then((result) => {
       console.log(result);
 
       if (result && result.results) {
