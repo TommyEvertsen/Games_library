@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SideBar from "./SideBar";
 import { FaBars } from "react-icons/fa";
@@ -11,6 +11,11 @@ export default function Header() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleDarkMode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -26,16 +31,16 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-(--background) text-(--primaryText) min-h-12 flex justify-between px-4 sticky top-0 z-50 ">
+      <div className="bg-[var(--background)] text-[var(--primaryText)] min-h-12 flex justify-between px-4 sticky top-0 z-50 ">
         <div className="flex items-center gap-2 ">
           <span
-            className="text-xl mr-3 hover:text-(--hover) cursor-pointer"
+            className="text-xl mr-3 hover:text-[var(--hover)] cursor-pointer"
             onClick={toggleSidebar}
           >
-            {<FaBars />}
+            <FaBars />
           </span>
           <h1
-            className="text-(--primaryText) text-lg cursor-pointer hover:text-(--hover)"
+            className="text-[var(--primaryText)] text-lg cursor-pointer hover:text-[var(--hover)]"
             onClick={goToHome}
           >
             Videogame library
@@ -44,12 +49,16 @@ export default function Header() {
         <div className="rightSide flex items-center ">
           <div
             onClick={toggleDarkMode}
-            className="cursor-pointer ml-4 p-2 rounded-full hover:bg-(--hoverBackground) transition-colors duration-200"
+            className="cursor-pointer ml-4 p-2 rounded-full hover:bg-[var(--hoverBackground)] transition-colors duration-200"
             title={
-              theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+              mounted
+                ? theme === "dark"
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+                : "Switch theme"
             }
           >
-            {theme === "dark" ? (
+            {mounted && theme === "dark" ? (
               <FaSun className="text-yellow-400" />
             ) : (
               <FaMoon className="text-gray-700" />

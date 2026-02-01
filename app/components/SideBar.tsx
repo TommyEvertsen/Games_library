@@ -39,14 +39,14 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
           <div className="openedSideBar w-full h-full    ">
             <div className="">
               <nav>
-                <h2 className="text(--primaryText) lg:text-lg flex justify-center py-2  ">
+                <h2 className="text-[var(--primaryText)] lg:text-lg flex justify-center py-2 border-b  ">
                   Menu
                 </h2>
-                <ul className="text(--primaryText) lg:text-lg py-1">
+                <ul className="text-[var(--primaryText)] lg:text-lg py-1">
                   {links.map((link, index) => (
                     <li
                       key={index}
-                      className="py-1 px-2 rounded cursor-pointer  hover:text-(--hover)  flex items-center gap-2"
+                      className="py-1 px-2 rounded cursor-pointer  hover:text-[var(--hover)] hover:bg-[var(--hoverBackgroundText)] flex items-center gap-2"
                       onClick={link.onclick}
                     >
                       <link.icon />
@@ -60,15 +60,15 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
         </div>
       )}
       {!isOpen && (
-        <div className="unopenedSideBarWrapper fixed top-12 left-0 bottom-0 w-12 z-50  bg(--background)  opacity-95 invisible lg:visible ">
+        <div className="unopenedSideBarWrapper fixed top-12 left-0 bottom-0 w-12 z-50  bg-[var(--background)]  opacity-95 invisible lg:visible ">
           <div className="unopenedSidebar w-full h-full ">
-            <nav className="flex justify-center pt-2 text-xl text(--primaryText)">
+            <nav className="flex justify-center pt-2 text-xl text-[var(--primaryText)]">
               <ul>
                 {links.map((link, index) => (
                   <li
                     key={index}
                     onClick={link.onclick}
-                    className="py-1.5 hover:text-(--hover)  cursor-pointer"
+                    className="py-1.5 hover:text-[var(--hover)]  cursor-pointer"
                   >
                     <link.icon />
                   </li>

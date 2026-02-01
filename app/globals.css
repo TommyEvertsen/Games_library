@@ -5,10 +5,12 @@
   --foreground: #171717;
   --primaryText: #171717;
   --secondaryText: #ffffff;
+  --accentText: #ffffff;
   --accent1: rgb(249, 74, 11);
   --accent2: rgb(106, 6, 110);
-  --hover: #42a5f5;
-  --hoverBackground: #e0e0e0;
+  --hover: #7c3aed;
+  --hoverBackground: #f3e8ff;
+  --hoverBackgroundText: #f3e8ff;
 }
 
 .dark {
@@ -16,10 +18,12 @@
   --foreground: #ededed;
   --primaryText: #f7f7f7;
   --secondaryText: #171717;
+  --accentText: #f7f7f7;
   --accent1: #ff5722;
   --accent2: #673ab7;
-  --hover: #ffeb3b;
-  --hoverBackground: #616161;
+  --hover: #2563eb;
+  --hoverBackground: #1e293b;
+  --hoverBackgroundText: #171717;
 }
 
 body {

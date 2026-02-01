@@ -6,6 +6,7 @@ interface Game {
   rating?: number;
   description_raw?: string;
   metacritic?: number;
+  metacritic_url?: string;
   metacritic_platforms?: Array<{
     metascore: number;
     platform: {
