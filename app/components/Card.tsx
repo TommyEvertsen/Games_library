@@ -24,7 +24,7 @@ export default function Card({
               <img
                 src={image}
                 alt={title || "image"}
-                className="w-full h-54 object-cover"
+                className="w-full h-54 object-contain md:object-cover"
               />
             </div>
           )}

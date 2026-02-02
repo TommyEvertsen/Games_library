@@ -43,22 +43,17 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
 
   return (
     <>
-      <div className="searchBarWrapper">
-        <div className="searchBar flex  gap-2">
+      <div className="searchBarWrapper ">
+        <div className="searchBar flex gap-2 h-8 ">
           <input
             type="text"
-            placeholder="Enter name of the game"
-            className="searchBar border-2 rounded-md  px-2 py-1"
+            placeholder="Search"
+            className="searchBar border rounded-md w-64  px-2 "
             value={searchText || ""}
             onChange={handleInputChange}
           />
           <span>
-            <Tbutton
-              variant="primary"
-              text="Search"
-              icon={<FaSearch />}
-              onClick={handleSearch}
-            />
+            <Tbutton variant="primary" text="Go" onClick={handleSearch} />
           </span>
         </div>
       </div>

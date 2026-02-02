@@ -10,7 +10,7 @@ export default function Tbutton({
   const getVariantClasses = (variant: string) => {
     switch (variant) {
       case "primary":
-        return "bg-white border-2 border-black transition-color duration-400 ease-in-out hover:bg-[var(--hover)] hover:text-white";
+        return "bg-[var(--background)] border border-[var(--foreground)] transition-color duration-400 ease-in-out hover:bg-[var(--hover)] hover:text-white";
       case "warning":
         return "bg-white border-2 border-black transition-color duration-400 ease-in-out hover:bg-[var(--hover)] hover:text-white";
       case "secondary":
@@ -28,7 +28,7 @@ export default function Tbutton({
       disabled={disabled}
       className={`
         px-4 py-2 rounded-md font-medium 
-        flex items-center gap-2 justify-center
+        flex items-center gap-2 justify-center h-8
         ${getVariantClasses(variant || "primary")}
         ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
       `}
