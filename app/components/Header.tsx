@@ -1,21 +1,33 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import SideBar from "./SideBar";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaSearch } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
 import { FaSun } from "react-icons/fa";
 import { useTheme } from "next-themes";
+import SearchBar from "./SearchBar";
+import SearchResults from "./SearchResult";
 
 export default function Header() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [openSearch, setOpenSearch] = useState(false);
+
+  const handleSearchResults = (results: any[]) => {
+    setSearchResults(results);
+  };
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const toggleSearch = () => {
+    setOpenSearch(!openSearch);
+  };
 
   const toggleDarkMode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -31,8 +43,8 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-[var(--background)] text-[var(--primaryText)] min-h-12 flex justify-between px-4 sticky top-0 z-50 ">
-        <div className="flex items-center gap-2 ">
+      <div className="bg-[var(--background)] text-[var(--primaryText)] min-h-12 flex justify-between md:grid md:grid-cols-3 md:items-center px-4 sticky top-0 z-50">
+        <div className="leftSide flex items-center gap-2">
           <span
             className="text-xl mr-3 hover:text-[var(--hover)] cursor-pointer"
             onClick={toggleSidebar}
@@ -46,7 +58,18 @@ export default function Header() {
             Videogame library
           </h1>
         </div>
-        <div className="rightSide flex items-center ">
+        <div className="middle hidden md:flex items-center justify-center">
+          <div className="">
+            <SearchBar onSearchResults={handleSearchResults} />
+          </div>
+          <div className="absolute top-full left-0 right-0 z-50 flex justify-center">
+            <SearchResults games={searchResults} />
+          </div>
+        </div>
+        <div className="rightSide flex items-center md:justify-end">
+          <div className="searchMobileButton md:hidden" onClick={toggleSearch}>
+            <FaSearch />
+          </div>
           <div
             onClick={toggleDarkMode}
             className="cursor-pointer ml-4 p-2 rounded-full hover:bg-[var(--hoverBackground)] transition-colors duration-200"
@@ -66,6 +89,17 @@ export default function Header() {
           </div>
         </div>
       </div>
+      {openSearch && (
+        <div className="searchBarMobile  relative md:hidden">
+          <div className="flex justify-center">
+            <SearchBar onSearchResults={handleSearchResults} />
+          </div>
+          <div className="absolute top-full left-0 right-0 z-50 flex justify-center">
+            <SearchResults games={searchResults} />
+          </div>
+        </div>
+      )}
+
       <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );

@@ -13,20 +13,17 @@ const SearchResults = ({ games }: GameInterface) => {
   return (
     <>
       <div className="searchResultsWrapper">
-        <div className="searchResultsBox">
+        <div className="searchResultsBox bg-[var(--background)] border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg max-h-96 overflow-y-auto">
           {games.length > 0 ? (
             <>
-              <div>
-                <h1>Results {games.length}</h1>
-              </div>
               <ul className="space-y-2">
                 {games.map((game, index) => (
                   <li
                     key={game.id || index}
-                    className="border p-4 rounded-md w-full bg-gray-50 flex gap-4 hover:bg-amber-300 cursor-pointer"
+                    className="border-b border-gray-100 dark:border-gray-600 last:border-b-0 p-4 w-64 flex gap-4 cursor-pointer hover:bg-[var(--hoverBackground)] transition-colors duration-200"
                     onClick={() => goToGame(game.id)}
                   >
-                    <div className="shrink-0">
+                    {/*  <div className="shrink-0">
                       <img
                         src={game.background_image}
                         alt={game.name || "Game image"}
@@ -34,18 +31,18 @@ const SearchResults = ({ games }: GameInterface) => {
                         height={80}
                         className="rounded-md object-cover"
                       />
-                    </div>
+                    </div> */}
 
                     <div className="flex-1">
                       <h3 className="font-semibold text-lg">{game.name}</h3>
 
-                      <p className="text-gray-600">Released: {game.released}</p>
+                      <p className="">Released: {game.released}</p>
                     </div>
                   </li>
                 ))}
               </ul>
-              <div className="rawg-attribution mt-4 text-sm text-gray-600 text-center">
-                <p>
+              <div className="rawg-attribution mt-4 text-sm ">
+                {/* <p>
                   Results by{" "}
                   <a
                     href="https://rawg.io/"
@@ -55,11 +52,14 @@ const SearchResults = ({ games }: GameInterface) => {
                   >
                     RAWG
                   </a>
-                </p>
+                </p> */}
+                <div className="">
+                  <h1>Results {games.length}</h1>
+                </div>
               </div>
             </>
           ) : (
-            <p className="text-gray-500">Try searching for something</p>
+            <p className="text-gray-500"></p>
           )}
         </div>
       </div>
