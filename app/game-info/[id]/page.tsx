@@ -86,7 +86,7 @@ const GameInfoPage = () => {
                 <img
                   src={background_image}
                   alt={name}
-                  className="rounded-lg h-full w-full"
+                  className="rounded-lg h-full"
                 />
               </div>
             </div>

@@ -16,6 +16,8 @@ export default function Header() {
   const [mounted, setMounted] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [openSearch, setOpenSearch] = useState(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const mobileSearchContainerRef = useRef<HTMLDivElement>(null);
 
   const handleSearchResults = (results: any[]) => {
     setSearchResults(results);
@@ -23,7 +25,29 @@ export default function Header() {
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node)
+      ) {
+        setSearchResults([]);
+      }
+
+      if (
+        openSearch &&
+        mobileSearchContainerRef.current &&
+        !mobileSearchContainerRef.current.contains(event.target as Node)
+      ) {
+        setSearchResults([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openSearch]);
 
   const toggleSearch = () => {
     setOpenSearch(!openSearch);
@@ -58,12 +82,15 @@ export default function Header() {
             Videogame library
           </h1>
         </div>
-        <div className="middle hidden md:flex items-center justify-center">
-          <div className="">
+        <div
+          className="middle hidden md:flex items-center justify-center"
+          ref={searchContainerRef}
+        >
+          <div className="relative">
             <SearchBar onSearchResults={handleSearchResults} />
-          </div>
-          <div className="absolute top-full left-0 right-0 z-50 flex justify-center">
-            <SearchResults games={searchResults} />
+            <div className="absolute top-full left-0 z-50">
+              <SearchResults games={searchResults} />
+            </div>
           </div>
         </div>
         <div className="rightSide flex items-center md:justify-end">
@@ -90,12 +117,15 @@ export default function Header() {
         </div>
       </div>
       {openSearch && (
-        <div className="searchBarMobile  relative md:hidden">
-          <div className="flex justify-center">
+        <div
+          className="searchBarMobile md:hidden flex justify-center"
+          ref={mobileSearchContainerRef}
+        >
+          <div className="relative">
             <SearchBar onSearchResults={handleSearchResults} />
-          </div>
-          <div className="absolute top-full left-0 right-0 z-50 flex justify-center">
-            <SearchResults games={searchResults} />
+            <div className="absolute top-full left-0 z-50">
+              <SearchResults games={searchResults} />
+            </div>
           </div>
         </div>
       )}
