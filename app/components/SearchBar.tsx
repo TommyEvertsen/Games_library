@@ -16,9 +16,13 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
     setSearchText(e.target.value || "");
   };
 
-  const handleSearch = () => {
-    console.log("Searching for:", searchText);
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
+  const handleSearch = () => {
     searchGames(searchText)
       .then((result) => {
         console.log("Games API Result:", result);
@@ -51,6 +55,7 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
             className="searchBar border rounded-md w-64  px-2 "
             value={searchText || ""}
             onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
           />
           <span>
             <Tbutton variant="primary" text="Go" onClick={handleSearch} />
