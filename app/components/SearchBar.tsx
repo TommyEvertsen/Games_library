@@ -55,7 +55,7 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
             className="searchBar border rounded-md w-64  px-2 "
             value={searchText || ""}
             onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
           />
           <span>
             <Tbutton variant="primary" text="Go" onClick={handleSearch} />

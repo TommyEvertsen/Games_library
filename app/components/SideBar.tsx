@@ -15,20 +15,11 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
     router.push("/");
   };
 
-  const goToSearch = () => {
-    router.push("/game-search");
-  };
-
   const links = [
     {
       title: "Home",
       onclick: goToHome,
       icon: FaHome,
-    },
-    {
-      title: "Search game",
-      onclick: goToSearch,
-      icon: FaGamepad,
     },
   ];
 
@@ -39,14 +30,11 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
           <div className="openedSideBar w-full h-full    ">
             <div className="">
               <nav>
-                <h2 className="text-[var(--primaryText)] lg:text-lg flex justify-center py-2 border-b  ">
-                  Menu
-                </h2>
                 <ul className="text-[var(--primaryText)] lg:text-lg py-1">
                   {links.map((link, index) => (
                     <li
                       key={index}
-                      className="py-1 px-2 rounded cursor-pointer  hover:text-[var(--hover)] hover:bg-[var(--hoverBackgroundText)] flex items-center gap-2"
+                      className="py-1 px-2 rounded-lg cursor-pointer  hover:text-[var(--hover)] hover:bg-[var(--hoverBackgroundText)] flex items-center gap-2"
                       onClick={link.onclick}
                     >
                       <link.icon />
