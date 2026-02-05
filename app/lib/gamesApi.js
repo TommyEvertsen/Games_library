@@ -1,4 +1,6 @@
-// Client-side API functions that call our secure API routes
+const API_KEY = process.env.NEXT_PUBLIC_RAWG_API_KEY;
+const BASE_URL = process.env.NEXT_PUBLIC_RAWG_BASE_URL;
+
 const cache = new Map();
 const CACHE_DURATION = 15 * 60 * 1000;
 
@@ -19,12 +21,9 @@ const setCachedData = (key, data) => {
 
 export const getGames = async (page = 1, pageSize = 20) => {
   try {
-    const searchParams = new URLSearchParams({
-      page: page.toString(),
-      page_size: pageSize.toString(),
-    });
-
-    const response = await fetch(`/api/games?${searchParams}`);
+    const response = await fetch(
+      `${BASE_URL}/games?key=${API_KEY}&page=${page}&page_size=${pageSize}`,
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -45,13 +44,15 @@ export const searchGames = async (
 ) => {
   try {
     const searchParams = new URLSearchParams({
+      key: API_KEY,
       search: query,
-      page: page.toString(),
-      page_size: pageSize.toString(),
-      search_precise: precise.toString(),
+      page: page,
+      page_size: pageSize,
+      search_precise: precise,
+      ordering: "-relevance",
     });
 
-    const response = await fetch(`/api/games/search?${searchParams}`);
+    const response = await fetch(`${BASE_URL}/games?${searchParams}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -66,7 +67,7 @@ export const searchGames = async (
 
 export const getGameById = async (id) => {
   try {
-    const response = await fetch(`/api/games/${id}`);
+    const response = await fetch(`${BASE_URL}/games/${id}?key=${API_KEY}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -87,17 +88,16 @@ export const getMostPopularGames = async (endDate) => {
   }
 
   try {
-    const searchParams = new URLSearchParams();
-    if (endDate) {
-      searchParams.append("endDate", endDate);
-    }
-
-    const response = await fetch(`/api/games/popular?${searchParams}`);
-
+    const response = await fetch(
+      `${BASE_URL}/games?dates=2023-01-01,${endDate}&ordering=-metacritic&metacritic=70,100&page_size=9&key=${API_KEY}`,
+      {
+        cache: "force-cache",
+        next: { revalidate: 300 },
+      },
+    );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const data = await response.json();
 
     setCachedData(cacheKey, data);

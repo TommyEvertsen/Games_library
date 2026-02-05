@@ -25,16 +25,11 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
   const handleSearch = () => {
     searchGames(searchText)
       .then((result) => {
-        console.log("Games API Result:", result);
         if (result.results && result.results.length > 0) {
-          console.log("First game info:", result.results[0]);
-
           if (onSearchResults) {
             onSearchResults(result.results);
           }
         } else {
-          console.log("No games found");
-
           if (onSearchResults) {
             onSearchResults([]);
           }
