@@ -4,7 +4,6 @@ import { getMostPopularGames } from "./lib/gamesApi";
 import Card from "./components/Card";
 import { useEffect, useState } from "react";
 import { Game } from "@/app/lib/interface/GameInterface";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {

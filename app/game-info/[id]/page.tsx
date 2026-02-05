@@ -103,6 +103,4 @@ const GameInfoPage = () => {
   );
 };
 
-/* Force redeploy */
-
 export default GameInfoPage;
