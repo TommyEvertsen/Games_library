@@ -1,6 +1,3 @@
-const API_KEY = process.env.NEXT_PUBLIC_RAWG_API_KEY;
-const BASE_URL = process.env.NEXT_PUBLIC_RAWG_BASE_URL;
-
 const cache = new Map();
 const CACHE_DURATION = 15 * 60 * 1000;
 
@@ -44,15 +41,13 @@ export const searchGames = async (
 ) => {
   try {
     const searchParams = new URLSearchParams({
-      key: API_KEY,
-      search: query,
+      query: query,
       page: page,
       page_size: pageSize,
-      search_precise: precise,
-      ordering: "-relevance",
+      precise: precise.toString(),
     });
 
-    const response = await fetch(`${BASE_URL}/games?${searchParams}`);
+    const response = await fetch(`/api/games/search?${searchParams}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -67,7 +62,7 @@ export const searchGames = async (
 
 export const getGameById = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/games/${id}?key=${API_KEY}`);
+    const response = await fetch(`/api/games/${id}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -88,13 +83,10 @@ export const getMostPopularGames = async (endDate) => {
   }
 
   try {
-    const response = await fetch(
-      `${BASE_URL}/games?dates=2023-01-01,${endDate}&ordering=-metacritic&metacritic=70,100&page_size=9&key=${API_KEY}`,
-      {
-        cache: "force-cache",
-        next: { revalidate: 300 },
-      },
-    );
+    const response = await fetch(`/api/games/popular?endDate=${endDate}`, {
+      cache: "force-cache",
+      next: { revalidate: 300 },
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -108,5 +100,13 @@ export const getMostPopularGames = async (endDate) => {
     throw error;
   }
 };
+
+export async function getPopularGames(endDate) {
+  const res = fetch(
+    `${BASE_URL}/games?dates=2023-01-01,${endDate}&ordering=-metacritic&metacritic=70,100&page_size=9&key=${API_KEY}`,
+  );
+  const data = await res.json();
+  return { props: { games: data } };
+}
 
 export { getGames, searchGames, getGameById, getMostPopularGames };
