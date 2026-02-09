@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url);
-    const endDate =
-      searchParams.get("endDate") || new Date().toISOString().split("T")[0];
-
     const API_KEY = process.env.API_KEY;
     const BASE_URL = process.env.BASE_URL;
+
+    const endDate = new Date().toISOString().split("T")[0];
 
     if (!API_KEY || !BASE_URL) {
       return NextResponse.json(
@@ -17,11 +15,7 @@ export async function GET(request: NextRequest) {
     }
 
     const response = await fetch(
-      `${BASE_URL}/games?dates=2023-01-01,${endDate}&ordering=-metacritic&metacritic=70,100&page_size=21&key=${API_KEY}`,
-      {
-        cache: "force-cache",
-        next: { revalidate: 300 },
-      },
+      `${BASE_URL}/games?&dates=2026-01-01,${endDate}&page=1&page_size=12&key=${API_KEY}`,
     );
 
     if (!response.ok) {
@@ -29,12 +23,11 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await response.json();
-
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Popular games API error:", error);
+    console.error("Newly released games API error:", error);
     return NextResponse.json(
-      { error: "Failed to fetch popular games" },
+      { error: "Failed to fetch newly released games" },
       { status: 500 },
     );
   }
