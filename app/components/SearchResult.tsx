@@ -21,6 +21,19 @@ const SearchResults = ({ games }: GameInterface) => {
                   key={game.id || index}
                   className="border-b border-gray-100 dark:border-gray-600 last:border-b-0 p-4 w-64 flex gap-4 cursor-pointer hover:bg-[var(--hoverBackground)] transition-colors duration-200"
                   onClick={() => goToGame(game.id)}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    goToGame(game.id);
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      goToGame(game.id);
+                    }
+                  }}
+                  style={{ WebkitTapHighlightColor: "transparent" }}
                 >
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg">{game.name}</h3>

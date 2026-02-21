@@ -5,7 +5,7 @@ export default function Footer() {
         <p className="text-center">
           Developed by{" "}
           <a
-            href="https://github.com/TommyEvertsen"
+            href="https://tommyevertsen.github.io/About_me"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:text-blue-300 "
