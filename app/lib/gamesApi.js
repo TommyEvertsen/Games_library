@@ -94,8 +94,8 @@ export const getMostPopularGames = async (endDate) => {
     const data = await response.json();
 
     setCachedData(cacheKey, data);
-    console.log(endDate);
-    console.log(data);
+    /* console.log(endDate);
+    console.log(data); */
     return data;
   } catch (error) {
     throw error;
@@ -111,7 +111,7 @@ export const recentGames = async () => {
     }
 
     const data = await response.json();
-    console.log(data);
+    /* console.log(data); */
     return data;
   } catch (error) {
     throw error;
@@ -123,7 +123,7 @@ export const highestRatedGames = async () => {
 
   const cachedData = getCachedData(cacheKey);
   if (cachedData) {
-    console.log("Loading highest rated games from cache");
+    /*  console.log("Loading highest rated games from cache"); */
     return cachedData;
   }
 
@@ -137,7 +137,7 @@ export const highestRatedGames = async () => {
     const data = await response.json();
 
     setCachedData(cacheKey, data);
-    console.log(data);
+    /*   console.log(data); */
     return data;
   } catch (error) {
     throw error;

@@ -13,7 +13,7 @@ const GameInfoPage = () => {
 
   useEffect(() => {
     getGameById(gameId).then((result) => {
-      console.log(result);
+      /*  console.log(result); */
       setGameData(result);
     });
   }, [gameId]);
@@ -93,8 +93,13 @@ const GameInfoPage = () => {
           </>
         ) : (
           <>
-            <div className="loadingScreen flex justify-center mt-16 text-3xl">
-              <h1>Loading game information...</h1>
+            <div className="loadingScreen flex flex-col items-center justify-center mt-16">
+              <h1 className="text-xl text-gray-600 dark:text-gray-400">
+                Loading game information...
+              </h1>
+              <div className="loading-spinner mb-4">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
+              </div>
             </div>
           </>
         )}
