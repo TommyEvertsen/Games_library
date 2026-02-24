@@ -33,18 +33,29 @@ export default function Home() {
   return (
     <div className="homeWrapper h-full px-4 lg:ml-16 lg:mr-4 cursor-pointer">
       <h1 className="flex justify-center mt-6 text-3xl">Popular games</h1>
-      <div className="homeGrid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
-        {gameData.map((game) => (
-          <div key={game.id} className="col1">
-            <Card
-              title={game.name}
-              image={game.background_image}
-              metacritic={game.metacritic}
-              onClick={() => goToGame(game.id)}
-            />
+      {gameData ? (
+        <div className="homeGrid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+          {gameData.map((game) => (
+            <div key={game.id} className="col1">
+              <Card
+                title={game.name}
+                image={game.background_image}
+                metacritic={game.metacritic}
+                onClick={() => goToGame(game.id)}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="loadingScreen flex flex-col items-center justify-center mt-16">
+          <h1 className="text-xl text-gray-600 dark:text-gray-400">
+            Loading popular games...
+          </h1>
+          <div className="loading-spinner mb-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
