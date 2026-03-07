@@ -5,7 +5,7 @@ export default function Footer() {
         <p className="text-center">
           Developed by{" "}
           <a
-            href="https://tommyevertsen.github.io/About_me"
+            href="https://about-me-five-beta.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:text-blue-300 "

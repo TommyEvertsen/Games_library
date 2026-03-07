@@ -1,8 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FaHome } from "react-icons/fa";
-import { FaGamepad } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
+import { FaHome, FaStar, FaClock } from "react-icons/fa";
 
 interface SideBarProps {
   isOpen: boolean;
@@ -13,11 +11,18 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
   const router = useRouter();
 
   const goToHome = () => {
+    setIsOpen(false);
     router.push("/");
   };
 
-  const goToNewGames = () => {
-    router.push("/highestRatedGames.tsx");
+  const goToRecentGames = () => {
+    setIsOpen(false);
+    router.push("/recent");
+  };
+
+  const goToHighesRatedGames = () => {
+    setIsOpen(false);
+    router.push("/highestRatedGames");
   };
 
   const links = [
@@ -27,8 +32,13 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
       icon: FaHome,
     },
     {
+      title: "Recent",
+      onclick: goToRecentGames,
+      icon: FaClock,
+    },
+    {
       title: "Highest rated",
-      onclick: goToNewGames,
+      onclick: goToHighesRatedGames,
       icon: FaStar,
     },
   ];
@@ -44,7 +54,7 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
                   {links.map((link, index) => (
                     <li
                       key={index}
-                      className="py-1 px-2 rounded-lg cursor-pointer  hover:text-[var(--hover)] hover:bg-[var(--hoverBackgroundText)] flex items-center gap-2"
+                      className="py-1.5 px-2 rounded-lg cursor-pointer  hover:text-[var(--hover)] hover:bg-[var(--hoverBackgroundText)] flex items-center gap-2"
                       onClick={link.onclick}
                     >
                       <link.icon />
@@ -66,7 +76,7 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
                   <li
                     key={index}
                     onClick={link.onclick}
-                    className="py-1.5 hover:text-[var(--hover)]  cursor-pointer"
+                    className="py-2 hover:text-[var(--hover)]  cursor-pointer flex-col"
                   >
                     <link.icon />
                   </li>
