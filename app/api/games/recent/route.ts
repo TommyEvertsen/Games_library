@@ -15,7 +15,11 @@ export async function GET() {
     }
 
     const response = await fetch(
-      `${BASE_URL}/games?&dates=2026-01-01,${endDate}&page=1&page_size=12&key=${API_KEY}`,
+      `${BASE_URL}/games?&dates=2026-01-01,${endDate}&page=1&page_size=21&key=${API_KEY}`,
+      {
+        cache: "force-cache",
+        next: { revalidate: 86400 },
+      },
     );
 
     if (!response.ok) {

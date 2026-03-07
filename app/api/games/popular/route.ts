@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
       `${BASE_URL}/games?dates=2023-01-01,${endDate}&ordering=-metacritic&metacritic=70,100&page_size=21&key=${API_KEY}`,
       {
         cache: "force-cache",
-        next: { revalidate: 300 },
+        next: { revalidate: 86400 },
       },
     );
 

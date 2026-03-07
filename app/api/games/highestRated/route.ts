@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
       `${BASE_URL}/games?&ordering=-metacritic&page=1&metacritic=90,100&page_size=21&key=${API_KEY}`,
       {
         cache: "force-cache",
-        next: { revalidate: 300 },
+        next: { revalidate: 86400 },
       },
     );
 
