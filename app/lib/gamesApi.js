@@ -118,6 +118,22 @@ export const recentGames = async () => {
   }
 };
 
+export const gameConsoles = async () => {
+  try {
+    const response = await fetch(`/api/games/consoles`);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const highestRatedGames = async () => {
   const cacheKey = "highest-rated-games";
 

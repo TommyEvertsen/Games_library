@@ -54,6 +54,12 @@ export default function Card({
               Metacritic: {metacritic}
             </div>
           )}
+
+          {text && (
+            <div className="cardContent py-3 px-3 text-base bg-(--background) text-(--foreground)">
+              Total games: {text}
+            </div>
+          )}
         </div>
       </div>
     </>
