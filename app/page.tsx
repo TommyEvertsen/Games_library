@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="homeWrapper h-full px-4 lg:ml-16 lg:mr-4 ">
       <h1 className="flex justify-center mt-6 text-3xl">Popular games</h1>
-      {gameData ? (
+      {gameData.length > 0 ? (
         <div className="homeGrid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 ">
           {gameData.map((game) => (
             <div key={game.id} className="col1 cursor-pointer">

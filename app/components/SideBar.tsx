@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FaHome, FaStar, FaClock } from "react-icons/fa";
+import { FaHome, FaStar, FaClock, FaGamepad } from "react-icons/fa";
 
 interface SideBarProps {
   isOpen: boolean;
@@ -25,6 +25,11 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
     router.push("/highestRatedGames");
   };
 
+  const goToConsoles = () => {
+    setIsOpen(false);
+    router.push("/consoles");
+  };
+
   const links = [
     {
       title: "Home",
@@ -40,6 +45,11 @@ const SideBar = ({ isOpen, setIsOpen }: SideBarProps) => {
       title: "Highest rated",
       onclick: goToHighesRatedGames,
       icon: FaStar,
+    },
+    {
+      title: "Consoles",
+      onclick: goToConsoles,
+      icon: FaGamepad,
     },
   ];
 
