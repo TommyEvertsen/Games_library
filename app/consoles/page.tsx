@@ -4,9 +4,15 @@ import { useEffect, useState } from "react";
 import { gameConsoles } from "../lib/gamesApi";
 import { Console } from "../lib/interface/Consoles";
 import Card from "../components/Card";
+import { useRouter } from "next/navigation";
 
 const ConsolePage = () => {
   const [consoles, setConsoles] = useState<Console[]>([]);
+  const router = useRouter();
+
+  const goToConsole = (id: number) => {
+    router.push(`/console-info/${id}`);
+  };
 
   useEffect(() => {
     const fetchConsoles = async () => {
@@ -39,12 +45,12 @@ const ConsolePage = () => {
             {consoles.map((console) => (
               <div
                 key={console.id}
-                className="bg-(--background)  rounded-lg  overflow-hidden "
+                className="bg-(--background)  rounded-lg  overflow-hidden cursor-pointer"
               >
                 <Card
                   title={console.name}
                   image={console.image_background}
-                  text={console.games_count?.toString()}
+                  onClick={() => goToConsole(console.id)}
                 />
               </div>
             ))}
