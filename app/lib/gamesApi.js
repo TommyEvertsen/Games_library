@@ -134,6 +134,19 @@ export const gameConsoles = async () => {
   }
 };
 
+export const getConsolesById = async (id) => {
+  try {
+    const response = await fetch(`/api/games/console-info/${id}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const highestRatedGames = async () => {
   const cacheKey = "highest-rated-games";
 
@@ -165,6 +178,8 @@ setInterval(clearExpiredCache, 5 * 60 * 1000);
 export {
   searchGames,
   getGameById,
+  gameConsoles,
+  getConsolesById,
   getMostPopularGames,
   recentGames,
   highestRatedGames,
